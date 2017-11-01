@@ -2,6 +2,7 @@
 
 /**
  * Plugin Name: Zero
+ * Plugin URI: https://github.com/zerooverflow/zero
  * Description: Zero, plugin base.
  * Version: 1.0.0
  * Author: ZeroOverflow
