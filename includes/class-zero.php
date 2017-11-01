@@ -51,8 +51,17 @@ final class Zero
 		add_action( 'init', array( $this, 'init' ), 0 );
 	}
 	
-	public function init() {
-		
+	public function init()
+	{}
+
+
+	static function install(){
+		$upload = wp_upload_dir();
+		$upload_dir = $upload['basedir'];
+		$upload_dir = $upload_dir . '/zero';
+		if (! is_dir($upload_dir)) {
+		   mkdir( $upload_dir, 0700 );
+		}
 	}
 	
 	private function __clone() 
@@ -63,6 +72,7 @@ final class Zero
 	
 	private function __construct()
 	{
+
 		$this->define_constants();
 		$this->includes();
 		$this->init_hooks();
@@ -93,6 +103,7 @@ final class Zero
 				return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' );
 		}
 	}
+
 	
 
 

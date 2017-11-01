@@ -35,3 +35,5 @@ function zero()
 
 // Globale per retro-compatibilità.
 $GLOBALS['zero'] = zero();
+
+register_activation_hook( __FILE__, array( 'Zero', 'install' ) );

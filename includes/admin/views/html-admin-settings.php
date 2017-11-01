@@ -16,5 +16,5 @@ if ( ! defined( 'ABSPATH' ) ) {
                 do_settings_sections( 'zero-admin' );
                 submit_button();
             ?>
-            </form>
+    </form>
 </div>
