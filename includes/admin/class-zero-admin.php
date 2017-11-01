@@ -8,22 +8,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Zero_Admin{
-	public function __construct() {
+class Zero_Admin
+{
+	public function __construct() 
+	{
 		add_action( 'init', array( $this, 'includes' ) );
 		add_action( 'current_screen', array( $this, 'conditional_includes' ) );
 		add_action( 'admin_init', array( $this, 'buffer' ), 1 );
 	}
 	
-	public function buffer() {
+	public function buffer() 
+	{
 		ob_start();
 	}
 	
-	public function includes() {
+	public function includes() 
+	{
 		include_once( dirname( __FILE__ ) . '/class-zero-admin-menus.php' );
 	}
 	
-	public function conditional_includes() {
+	public function conditional_includes() 
+	{
 		
 		if ( ! $screen = get_current_screen() ) {
 			return;

@@ -4,11 +4,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-class Zero_Autoloader{
+/**
+ * Autoload class
+ */
+class Zero_Autoloader
+{
 	
 	private $include_path = '';
 	
-	public function __construct() {
+	public function __construct() 
+	{
 		if ( function_exists( "__autoload" ) ) {
 			spl_autoload_register( "__autoload" );
 		}
@@ -18,11 +23,13 @@ class Zero_Autoloader{
 		$this->include_path = untrailingslashit( plugin_dir_path( ZERO_PLUGIN_FILE ) ) . '/includes/';
 	}
 	
-	private function get_file_name_from_class( $class ) {
+	private function get_file_name_from_class( $class ) 
+	{
 		return 'class-' . str_replace( '_', '-', $class ) . '.php';
 	}
 	
-	private function load_file( $path ) {
+	private function load_file( $path ) 
+	{
 		if ( $path && is_readable( $path ) ) {
 			include_once( $path );
 			return true;
@@ -30,7 +37,8 @@ class Zero_Autoloader{
 		return false;
 	}
 	
-	public function autoload( $class ) {
+	public function autoload( $class ) 
+	{
 		
 		$class = strtolower( $class );
 		

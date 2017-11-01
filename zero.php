@@ -28,7 +28,8 @@ if ( ! class_exists( 'Zero' ) ) {
  * istanza principale di Zero.
  *
  */
-function zero() {
+function zero() 
+{
 	return Zero::get_instance();
 }
 

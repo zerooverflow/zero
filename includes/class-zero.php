@@ -5,20 +5,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-final class Zero {
+final class Zero 
+{
 	
 	public $version = '1.0.0';
 
 	private static $instance;
 
-	public static function get_instance(){
+	public static function get_instance()
+	{
 		if( null === self::$instance ){
 			self::$instance = new self();
 		}
 		return self::$instance;
 	}
 	
-	public function includes(){
+	public function includes()
+	{
 		
 		include_once( ZERO_ABSPATH . '/includes/class-zero-autoloader.php' );
 		
@@ -36,13 +39,15 @@ final class Zero {
 
 	}
 	
-	public function frontend_includes() {
+	public function frontend_includes()
+	{
 		/*
 		 * FRONTEND INCLUDES 
 		 */
 	}
 	
-	public function init_hooks(){
+	public function init_hooks()
+	{
 		add_action( 'init', array( $this, 'init' ), 0 );
 	}
 	
@@ -50,27 +55,33 @@ final class Zero {
 		
 	}
 	
-	private function __clone() {}
+	private function __clone() 
+	{}
 	
-	private function __wakeup() {}
+	private function __wakeup()
+	{}
 	
-	private function __construct(){
+	private function __construct()
+	{
 		$this->define_constants();
 		$this->includes();
 		$this->init_hooks();
 	}
 	
-	private function define_constants() {
+	private function define_constants()
+	{
 		$this->define('ZERO_ABSPATH', dirname( ZERO_PLUGIN_FILE ));
 	}
 	
-	private function define( $name, $value ) {
+	private function define( $name, $value )
+	{
 		if ( ! defined( $name ) ) {
 			define( $name, $value );
 		}
 	}
 	
-	private function is_request( $type ) {
+	private function is_request( $type )
+	{
 		switch ( $type ) {
 			case 'admin' :
 				return is_admin();
