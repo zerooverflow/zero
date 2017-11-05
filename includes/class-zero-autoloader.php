@@ -39,7 +39,6 @@ class Zero_Autoloader
 	
 	public function autoload( $class ) 
 	{
-		
 		$class = strtolower( $class );
 		
 		if ( 0 !== strpos( $class, 'zero_' ) ) {
@@ -51,6 +50,8 @@ class Zero_Autoloader
 		
 		if ( 0 === strpos( $class, 'zero_admin' ) ) {
 			$path = $this->include_path . 'admin/';
+		} elseif (  0 === strpos( $class, 'zero_upload' ) ){
+			$path = $this->include_path . 'upload/';
 		}
 		
 		if ( empty( $path ) || ! $this->load_file( $path . $file ) ) {

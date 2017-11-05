@@ -10,6 +10,8 @@ final class Zero
 	
 	public $version = '1.0.0';
 
+	public $upload_dir;
+
 	private static $instance;
 
 	public static function get_instance()
@@ -52,16 +54,28 @@ final class Zero
 	}
 	
 	public function init()
-	{}
+	{
+		if ( $this->is_request( 'frontend' ) && $this->options['maintenance_flag'] ) {
+			include   ZERO_ABSPATH . '/views/html-maintenance-mode.php' ;
+			die();
+		}
+
+		if ( $this->is_request( 'frontend' ) ) {
+			include_once( ZERO_ABSPATH . '/includes/upload/class-zero-upload.php' );
+		}
+
+	}
 
 
 	static function install(){
+
 		$upload = wp_upload_dir();
 		$upload_dir = $upload['basedir'];
 		$upload_dir = $upload_dir . '/zero';
 		if (! is_dir($upload_dir)) {
 		   mkdir( $upload_dir, 0700 );
 		}
+
 	}
 	
 	private function __clone() 
@@ -72,6 +86,11 @@ final class Zero
 	
 	private function __construct()
 	{
+		$this->options = get_option( 'zero_option_name' );
+		
+		$upload = wp_upload_dir();
+		$upload_dir = $upload['basedir'];
+		$this->upload_dir = $upload_dir . '/zero';
 
 		$this->define_constants();
 		$this->includes();
